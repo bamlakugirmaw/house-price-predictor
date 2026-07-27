@@ -159,10 +159,12 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+from pathlib import Path
+
 @st.cache_resource
 def load_house_model():
-    model_path = os.path.abspath('best_house_price_model.pkl')
-    if os.path.exists(model_path):
+    model_path = Path(__file__).parent / "best_house_price_model.pkl"
+    if model_path.exists():
         return joblib.load(model_path)
     return None
 
